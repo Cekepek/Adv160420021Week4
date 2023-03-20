@@ -1,10 +1,11 @@
-package com.cekepek.adv160420021week4
+package com.cekepek.adv160420021week4.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cekepek.adv160420021week4.R
 
 class StudentDetailFragment : Fragment() {
     override fun onCreateView(
