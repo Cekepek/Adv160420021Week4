@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cekepek.adv160420021week4.R
 import com.cekepek.adv160420021week4.viewmodel.DetailViewModel
 import com.cekepek.adv160420021week4.viewmodel.ListViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_student_detail.*
 
 class StudentDetailFragment : Fragment() {
@@ -41,6 +42,7 @@ class StudentDetailFragment : Fragment() {
             txtName.setText(it.name)
             txtBod.setText(it.dob)
             txtPhone.setText(it.phone)
+            Picasso.get().load(it.photoUrl).into(imageView2)
         })
     }
 }

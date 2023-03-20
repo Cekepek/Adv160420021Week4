@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.cekepek.adv160420021week4.R
 import com.cekepek.adv160420021week4.model.Student
+import com.squareup.picasso.Picasso
 
 class StudentListAdapter(val studenList:ArrayList<Student>)
     :RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>()
@@ -28,7 +30,8 @@ class StudentListAdapter(val studenList:ArrayList<Student>)
         txtID.text = studenList[position].id
         val txtName = holder.view.findViewById<TextView>(R.id.txtName)
         txtName.text = studenList[position].name
-
+        val image  = holder.view.findViewById<ImageView>(R.id.imageView)
+        Picasso.get().load(studenList[position].photoUrl).into(image)
         val btnDetail = holder.view.findViewById<Button>(R.id.btnDetail)
         btnDetail.setOnClickListener {
             var id = "0"
