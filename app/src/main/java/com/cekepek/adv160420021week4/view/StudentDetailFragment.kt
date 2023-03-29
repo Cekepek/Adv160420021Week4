@@ -40,7 +40,7 @@ class StudentDetailFragment : Fragment() {
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
             txtID.setText(it.id)
             txtName.setText(it.name)
-            txtBod.setText(it.dob)
+            txtBod.setText(it.bod)
             txtPhone.setText(it.phone)
             Picasso.get().load(it.photoUrl).into(imageView2)
         })

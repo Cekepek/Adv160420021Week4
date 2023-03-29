@@ -21,6 +21,7 @@ class DetailViewModel:ViewModel() {
         for (student in studentList){
             if(student.id == id){
                 studentDetail = student
+                break
             }
         }
         studentLD.value = studentDetail
