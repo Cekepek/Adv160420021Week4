@@ -5,14 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.cekepek.adv160420021week4.R
 import com.cekepek.adv160420021week4.model.Student
+import com.cekepek.adv160420021week4.util.loadImage
 import com.squareup.picasso.Picasso
 
-class StudentListAdapter(val studenList:ArrayList<Student>)
+class StudentListAdapter(val studentList:ArrayList<Student>)
     :RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>()
 {
     class StudentViewHolder(var view: View) : RecyclerView.ViewHolder(view)
@@ -27,15 +29,16 @@ class StudentListAdapter(val studenList:ArrayList<Student>)
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int){
         val txtID = holder.view.findViewById<TextView>(R.id.txtID) // karena ada 2 id text view yang txtID maka pakai gini dan class nya ga nyambung ke layout apa-apa
-        txtID.text = studenList[position].id
+        txtID.text = studentList[position].id
         val txtName = holder.view.findViewById<TextView>(R.id.txtName)
-        txtName.text = studenList[position].name
+        txtName.text = studentList[position].name
         val image  = holder.view.findViewById<ImageView>(R.id.imageView)
-        Picasso.get().load(studenList[position].photoUrl).into(image)
+        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressBar)
+        image.loadImage(studentList[position].photoUrl, progressBar)
         val btnDetail = holder.view.findViewById<Button>(R.id.btnDetail)
         btnDetail.setOnClickListener {
             var id = "0"
-            studenList[position].id?.let{
+            studentList[position].id?.let{
                 id = it
             }
             val action = StudentListFragmentDirections.actionStudentDetail(id)
@@ -44,12 +47,12 @@ class StudentListAdapter(val studenList:ArrayList<Student>)
     }
 
     override fun getItemCount(): Int {
-        return studenList.size
+        return studentList.size
     }
 
     fun updateStudentList(newStudentList: ArrayList<Student>) {
-        studenList.clear()
-        studenList.addAll(newStudentList)
+        studentList.clear()
+        studentList.addAll(newStudentList)
         notifyDataSetChanged()
     }
 
