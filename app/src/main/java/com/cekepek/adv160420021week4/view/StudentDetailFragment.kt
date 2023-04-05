@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.cekepek.adv160420021week4.R
+import com.cekepek.adv160420021week4.util.loadImage
 import com.cekepek.adv160420021week4.viewmodel.DetailViewModel
 import com.cekepek.adv160420021week4.viewmodel.ListViewModel
 import com.squareup.picasso.Picasso
@@ -42,7 +43,7 @@ class StudentDetailFragment : Fragment() {
             txtName.setText(it.name)
             txtBod.setText(it.bod)
             txtPhone.setText(it.phone)
-            Picasso.get().load(it.photoUrl).into(imageView2)
+            imageView2.loadImage(it.photoUrl,progressBarDetail)
         })
     }
 }
