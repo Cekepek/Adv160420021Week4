@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     init {
@@ -67,9 +68,19 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer)
+
             createNotificationChannel(this,
                 NotificationManagerCompat.IMPORTANCE_DEFAULT, false,
                 getString(R.string.app_name), "App notification channel.")
 
+            Observable.timer(5, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    Log.d("Messages", "five seconds")
+                    showNotification("Ini Nama Student",
+                    "A new notification created",
+                    R.drawable.ic_baseline_error_24)
+                }
         }
     }
