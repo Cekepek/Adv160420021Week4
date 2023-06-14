@@ -4,9 +4,11 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.databinding.BindingAdapter
 import com.cekepek.adv160420021week4.R
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -39,4 +41,14 @@ fun createNotificationChannel(context: Context, importance: Int, showBadge: Bool
 
     }
 }
+
+@BindingAdapter("android:imageUrl","android:progressBar")
+fun loadPhotoURL(view:ImageView, url:String?, pb:ProgressBar){
+    Log.e("cekbinding", url!!)
+    if(url != null){
+
+        view.loadImage(url,pb)
+    }
+}
+
 
